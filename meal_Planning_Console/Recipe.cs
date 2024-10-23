@@ -7,5 +7,13 @@ namespace meal_Planning_Console
         public required List<Ingredient> Ingredients { get; set;}
         public string ServingSize { get; set;} = "";
 
+        //Constructors
+        public Recipe(string name, string description, List<Ingredient> ingredients, string servingSize)
+        {
+            this.Name = name;
+            this.Description = description;
+            this.Ingredients = ingredients;
+            this.ServingSize = servingSize;
+        }
     }
 }
