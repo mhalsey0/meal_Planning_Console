@@ -1,0 +1,11 @@
+namespace meal_Planning_Console
+{
+    public class Recipe
+    {
+        public required string Name { get; set;}
+        public required string Description { get; set;}
+        public required List<Ingredient> Ingredients { get; set;}
+        public string ServingSize { get; set;} = "";
+
+    }
+}
