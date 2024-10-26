@@ -1,2 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using meal_Planning_Console;
+
+class Program
+{
+    public static void Main(String[] args)
+    {
+        ConsoleUI.Menu();
+    }
+}

@@ -16,10 +16,19 @@ namespace meal_Planning_Console
             this.Instructions = instructions;
             this.Ingredients = ingredients;
             this.ServingSize = servingSize;
+            allRecipes.Add(this);
         }
 
         public Recipe()
         {
+            allRecipes.Add(this);
+        }
+
+        private static readonly List<Recipe> allRecipes = [];
+
+        public static List<Recipe> GetRecipes()
+        {
+            return allRecipes;
         }
     }
 }

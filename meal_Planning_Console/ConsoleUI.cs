@@ -16,6 +16,9 @@ namespace meal_Planning_Console
         {
             Console.WriteLine("Please select from the following options:");
             Console.WriteLine("1: Enter a new recipe 2: Create a shopping list 3: Exit");
+            MenuSlection(IntUserInput());
+            Console.ReadLine(); //used to keep program running
+
             return;
         }
 
@@ -58,7 +61,7 @@ namespace meal_Planning_Console
                     break;
                 
                 case 1: //create a new recipe
-                    Recipe recipe = new ();
+                    Recipe newRecipe = new ();
 
                     //adding list of ingredients
                     Console.WriteLine("How Many Ingredients do you have?");
@@ -77,35 +80,44 @@ namespace meal_Planning_Console
                         ingredient.Amount = IntUserInput();
                         ingredients.Add(ingredient);
                     }
-                    recipe.Ingredients = ingredients;
+                    newRecipe.Ingredients = ingredients;
 
                     //adding instructions
                     Console.WriteLine("Please write the instructions on how to prepare this recipe.");
-                    recipe.Instructions = StringUserInput();
+                    newRecipe.Instructions = StringUserInput();
 
                     //adding description
                     Console.WriteLine("Please provide a brief description of your recipe");
-                    recipe.Description = StringUserInput();
+                    newRecipe.Description = StringUserInput();
 
                     //adding serving size
                     Console.WriteLine("How many servings will this make? (leave blank if serving size is unkown)");
-                    recipe.ServingSize = StringUserInput();
+                    newRecipe.ServingSize = StringUserInput();
 
                     //adding name
                     Console.WriteLine("What is the name of this recipe?");
-                    recipe.Name = StringUserInput();
+                    newRecipe.Name = StringUserInput();
 
                     break;
 
                 case 2: //create a shopping list
                     Console.WriteLine("Which recipes will you be shoping for?");
-                    //how will i recall previously entered recipes? where are they stored?
+                    List<Recipe> recipes = Recipe.GetRecipes();
+
+                    //write all recipes to the console
+                    for (int i = 0; i < recipes.Count; i++)
+                    {
+                        Console.WriteLine($"{i}: {recipes[i].Name}");
+                    }
+
                     break;
 
                 case 3: //exit the application
                     break;
 
             }
+            Menu();
+            return;
         }
     }
 }
