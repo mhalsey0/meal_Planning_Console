@@ -27,15 +27,32 @@ namespace meal_Planning_Console
             string? userInput = Console.ReadLine();
             bool success = int.TryParse(userInput, out int userInputNumber);
 
-            if (success == false || userInputNumber > 3)
+            if (success == false)
             {
-                return 0;
+                return -1;
             }
             else
             {
                 return userInputNumber;
             }
         }
+
+        public static int IntUserInput(char input)
+        {
+            string? userInput = input.ToString();
+            bool success = int.TryParse(userInput, out int userInputNumber);
+
+            if (success == false)
+            {
+                return -1;
+            }
+            else
+            {
+                return userInputNumber;
+            }
+        }
+
+
 
         public static string StringUserInput()
         {
@@ -55,10 +72,10 @@ namespace meal_Planning_Console
         {
             switch (selection)
             {
-                case 0: //error handling from IntUserInput
+                case -1: //error handling from IntUserInput
                     Console.WriteLine("Please enter a valid selection");
                     Menu();
-                    break;
+                    break;               
                 
                 case 1: //create a new recipe
                     Recipe newRecipe = new ();
@@ -108,6 +125,18 @@ namespace meal_Planning_Console
                     for (int i = 0; i < recipes.Count; i++)
                     {
                         Console.WriteLine($"{i}: {recipes[i].Name}");
+                    }
+
+                    Console.WriteLine("Please type the number of each recipe you would like to shop for separated by a comma and a space:");
+                    Console.WriteLine("(e.g. 1, 2, 3...)");
+
+                    String recipeSelection = StringUserInput();
+                    Char[] recipeSelectionArray = recipeSelection.ToCharArray();
+                    List<int> recipeSelectionIndexes = new ();
+
+                    foreach(char c in recipeSelectionArray) //create list of indexes for selected recipes
+                    {
+                        recipeSelectionIndexes.Add(IntUserInput(c));
                     }
 
                     break;
