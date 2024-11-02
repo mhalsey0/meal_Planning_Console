@@ -128,7 +128,7 @@ namespace meal_Planning_Console
                     }
 
                     Console.WriteLine("Please type the number of each recipe you would like to shop for separated by a comma and a space:");
-                    Console.WriteLine("(e.g. 1, 2, 3...)");
+                    Console.WriteLine("(e.g. 1, 3, 4...)");
 
                     String recipeSelection = StringUserInput();
                     Char[] recipeSelectionArray = recipeSelection.ToCharArray();
@@ -138,6 +138,16 @@ namespace meal_Planning_Console
                     {
                         recipeSelectionIndexes.Add(IntUserInput(c));
                     }
+
+                    List<Recipe> selectedRecipes = new();
+
+                    foreach(int index in recipeSelectionIndexes)
+                    {
+                        selectedRecipes.Add(recipes[index]);
+                    }
+
+                    List<Ingredient> groceryList = Ingredient.CreateGroceryList(selectedRecipes);
+                    Console.WriteLine(groceryList);
 
                     break;
 
