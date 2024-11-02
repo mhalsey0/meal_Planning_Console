@@ -152,7 +152,7 @@ namespace meal_Planning_Console
                     break;
 
                 case 3: //exit the application
-                    break;
+                    return;
 
             }
             Menu();
