@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 
 namespace meal_Planning_Console
@@ -37,18 +38,30 @@ namespace meal_Planning_Console
             }
         }
 
-        public static int IntUserInput(char input)
+        public static List<int> ListUserInput()
         {
-            string? userInput = input.ToString();
-            bool success = int.TryParse(userInput, out int userInputNumber);
+            char[] charList = Console.ReadLine().ToCharArray();
+            List<int> intList = new ();
 
-            if (success == false)
+            if(charList.Length == 0 || charList == null)
             {
-                return -1;
+                intList.Add(-1); //add value for error handling
+
+                return intList;
+
             }
             else
             {
-                return userInputNumber;
+                foreach(char c in charList)
+                {
+                    if(char.IsNumber(c))
+                    {
+                        int charToInt = (int)Char.GetNumericValue(c);
+                        intList.Add(charToInt);
+                    }
+                }
+
+                return intList;
             }
         }
 
@@ -130,13 +143,11 @@ namespace meal_Planning_Console
                     Console.WriteLine("Please type the number of each recipe you would like to shop for separated by a comma and a space:");
                     Console.WriteLine("(e.g. 1, 3, 4...)");
 
-                    String recipeSelection = StringUserInput();
-                    Char[] recipeSelectionArray = recipeSelection.ToCharArray();
-                    List<int> recipeSelectionIndexes = new ();
+                    List<int> recipeSelectionIndexes = ListUserInput();
 
-                    foreach(char c in recipeSelectionArray) //create list of indexes for selected recipes
+                    foreach(int index in recipeSelectionIndexes) //create list of indexes for selected recipes
                     {
-                        recipeSelectionIndexes.Add(IntUserInput(c));
+                        recipeSelectionIndexes.Add(index);
                     }
 
                     List<Recipe> selectedRecipes = new();
@@ -145,6 +156,9 @@ namespace meal_Planning_Console
                     {
                         selectedRecipes.Add(recipes[index]);
                     }
+                    Console.WriteLine("You've selected the following recipes:");
+                    Console.WriteLine(selectedRecipes);
+                    Console.WriteLine("Here is your grocery list");
 
                     List<Ingredient> groceryList = Ingredient.CreateGroceryList(selectedRecipes);
                     Console.WriteLine(groceryList);
