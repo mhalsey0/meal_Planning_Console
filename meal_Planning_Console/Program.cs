@@ -4,6 +4,6 @@ class Program
 {
     public static void Main(String[] args)
     {
-        ConsoleUI.Menu();
+        UserInterface.OnStart();
     }
 }

@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace meal_Planning_Console
 {
-    public class ConsoleUI
+    public class UserInterface
     {
         public static void OnStart()
         {
@@ -40,29 +40,27 @@ namespace meal_Planning_Console
 
         public static List<int> ListUserInput()
         {
-            char[] charList = Console.ReadLine().ToCharArray();
-            List<int> intList = new ();
+            string? input = Console.ReadLine();
 
-            if(charList.Length == 0 || charList == null)
+            if(string.IsNullOrWhiteSpace(input))
             {
-                intList.Add(-1); //add value for error handling
+                Console.WriteLine("Please enter a valid input.");
 
-                return intList;
-
+                return ListUserInput();
             }
-            else
+
+            List<int> intList = new();
+
+            foreach(char c in input)
             {
-                foreach(char c in charList)
+                if(char.IsNumber(c))
                 {
-                    if(char.IsNumber(c))
-                    {
-                        int charToInt = (int)Char.GetNumericValue(c);
-                        intList.Add(charToInt);
-                    }
+                    int charToInt = (int)Char.GetNumericValue(c);
+                    intList.Add(charToInt);
                 }
-
-                return intList;
             }
+            
+            return intList;
         }
 
 
