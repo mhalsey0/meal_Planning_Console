@@ -1,7 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace meal_Planning_Console
 {
-    public class Recipe
+    public class Recipe : DbContext
     {
+        public int Id { get; set; }
+        public DateTime createdDate { get; set; } = DateTime.UtcNow;
         public string Name { get; set;}
         public string Description { get; set;}
         public string Instructions { get; set;}

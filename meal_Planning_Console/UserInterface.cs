@@ -142,12 +142,6 @@ namespace meal_Planning_Console
                     Console.WriteLine("(e.g. 1, 3, 4...)");
 
                     List<int> recipeSelectionIndexes = ListUserInput();
-
-                    foreach(int index in recipeSelectionIndexes) //create list of indexes for selected recipes
-                    {
-                        recipeSelectionIndexes.Add(index);
-                    }
-
                     List<Recipe> selectedRecipes = new();
 
                     foreach(int index in recipeSelectionIndexes)
@@ -157,9 +151,12 @@ namespace meal_Planning_Console
                     Console.WriteLine("You've selected the following recipes:");
                     Console.WriteLine(selectedRecipes);
                     Console.WriteLine("Here is your grocery list");
+                    List<Ingredient> consolidatedIngredients = GroceryList.consolidateIngredients(selectedRecipes);
+                    GroceryList groceryList = new();
+                    groceryList.Ingredients = consolidatedIngredients;
 
-                    List<Ingredient> groceryList = Ingredient.CreateGroceryList(selectedRecipes);
-                    Console.WriteLine(groceryList);
+                    Console.WriteLine($"Grocery list for {groceryList.createdDate}");
+                    Console.WriteLine(groceryList.Ingredients);
 
                     break;
 
