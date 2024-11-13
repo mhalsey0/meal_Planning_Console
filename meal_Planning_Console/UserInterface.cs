@@ -110,19 +110,16 @@ namespace meal_Planning_Console
                     }
                     newRecipe.Ingredients = ingredients;
 
-                    //adding instructions
+
                     Console.WriteLine("Please write the instructions on how to prepare this recipe.");
                     newRecipe.Instructions = StringUserInput();
 
-                    //adding description
                     Console.WriteLine("Please provide a brief description of your recipe");
                     newRecipe.Description = StringUserInput();
 
-                    //adding serving size
                     Console.WriteLine("How many servings will this make? (leave blank if serving size is unkown)");
                     newRecipe.ServingSize = StringUserInput();
 
-                    //adding name
                     Console.WriteLine("What is the name of this recipe?");
                     newRecipe.Name = StringUserInput();
 
@@ -137,7 +134,7 @@ namespace meal_Planning_Console
                     {
                         Console.WriteLine($"{i}: {recipes[i].Name}");
                     }
-
+                    
                     Console.WriteLine("Please type the number of each recipe you would like to shop for separated by a comma and a space:");
                     Console.WriteLine("(e.g. 1, 3, 4...)");
 
