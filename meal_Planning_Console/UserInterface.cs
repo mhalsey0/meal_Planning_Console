@@ -148,11 +148,11 @@ namespace meal_Planning_Console
                     Console.WriteLine("You've selected the following recipes:");
                     Console.WriteLine(selectedRecipes);
                     Console.WriteLine("Here is your grocery list");
-                    List<Ingredient> consolidatedIngredients = GroceryList.consolidateIngredients(selectedRecipes);
+                    List<Ingredient> consolidatedIngredients = GroceryList.ConsolidateIngredients(selectedRecipes);
                     GroceryList groceryList = new();
                     groceryList.Ingredients = consolidatedIngredients;
 
-                    Console.WriteLine($"Grocery list for {groceryList.createdDate}");
+                    Console.WriteLine($"Grocery list for {groceryList.CreatedDate}");
                     Console.WriteLine(groceryList.Ingredients);
 
                     break;

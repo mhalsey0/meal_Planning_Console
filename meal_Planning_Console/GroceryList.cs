@@ -1,9 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace meal_Planning_Console
 {
-    public class GroceryList
+    public class GroceryList : DbContext
     {
         public int Id { get; set; }
-        public DateTime createdDate { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
         public List<Ingredient> Ingredients { get; set; }
 
 
@@ -12,7 +14,7 @@ namespace meal_Planning_Console
 
         }
 
-        public static List<Ingredient> consolidateIngredients(List<Recipe> recipes)
+        public static List<Ingredient> ConsolidateIngredients(List<Recipe> recipes)
         {
             List<Ingredient> groceryList = new();
 
