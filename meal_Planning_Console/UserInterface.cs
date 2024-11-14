@@ -42,7 +42,7 @@ namespace meal_Planning_Console
         {
             string? input = Console.ReadLine();
 
-            if(string.IsNullOrWhiteSpace(input))
+            if (string.IsNullOrWhiteSpace(input))
             {
                 Console.WriteLine("Please enter a valid input.");
 
@@ -51,15 +51,14 @@ namespace meal_Planning_Console
 
             List<int> intList = new();
 
-            foreach(char c in input)
+            foreach (char c in input)
             {
-                if(char.IsNumber(c))
+                if (char.IsNumber(c))
                 {
                     int charToInt = (int)Char.GetNumericValue(c);
                     intList.Add(charToInt);
                 }
             }
-            
             return intList;
         }
 
@@ -68,7 +67,6 @@ namespace meal_Planning_Console
         public static string StringUserInput()
         {
             string? userInput = Console.ReadLine();
-            
             if (userInput != null && userInput.Length > 1)
             {
                 return userInput;
@@ -86,10 +84,9 @@ namespace meal_Planning_Console
                 case -1: //error handling from IntUserInput
                     Console.WriteLine("Please enter a valid selection");
                     Menu();
-                    break;               
-                
+                    break;
                 case 1: //create a new recipe
-                    Recipe newRecipe = new ();
+                    Recipe newRecipe = new();
 
                     //adding list of ingredients
                     Console.WriteLine("How Many Ingredients do you have?");
@@ -126,7 +123,7 @@ namespace meal_Planning_Console
                     break;
 
                 case 2: //create a shopping list
-                    Console.WriteLine("Which recipes will you be shoping for?");
+                    Console.WriteLine("Which recipes will you be shopping for?");
                     List<Recipe> recipes = Recipe.GetRecipes();
 
                     //write all recipes to the console
@@ -134,16 +131,29 @@ namespace meal_Planning_Console
                     {
                         Console.WriteLine($"{i}: {recipes[i].Name}");
                     }
-                    
                     Console.WriteLine("Please type the number of each recipe you would like to shop for separated by a comma and a space:");
                     Console.WriteLine("(e.g. 1, 3, 4...)");
 
                     List<int> recipeSelectionIndexes = ListUserInput();
                     List<Recipe> selectedRecipes = new();
 
-                    foreach(int index in recipeSelectionIndexes)
+                    bool isError = false;
+                    foreach (int index in recipeSelectionIndexes)
                     {
-                        selectedRecipes.Add(recipes[index]);
+                        if (index < recipeSelectionIndexes.Count)
+                        {
+                            selectedRecipes.Add(recipes[index]);
+                        }
+                        else
+                        {
+                            string errorMessage = "The recipe index " + index + " does not exist. please try again";
+                            Console.WriteLine(errorMessage);
+                            isError = true;
+                        }
+                    }
+                    if (isError)
+                    {
+                        break;
                     }
                     Console.WriteLine("You've selected the following recipes:");
                     Console.WriteLine(selectedRecipes);
