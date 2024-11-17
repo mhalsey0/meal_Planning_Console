@@ -1,6 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace meal_Planning_Console
 {
-    public class Ingredient
+    public class Ingredient : DbContext
     {
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;

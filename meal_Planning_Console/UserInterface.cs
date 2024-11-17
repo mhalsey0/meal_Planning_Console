@@ -156,13 +156,24 @@ namespace meal_Planning_Console
                         break;
                     }
                     Console.WriteLine("You've selected the following recipes:");
-                    Console.WriteLine(selectedRecipes);
+                    foreach(Recipe recipe in selectedRecipes)
+                    {
+                        Console.WriteLine(recipe.Name);
+                    }
+                    
                     Console.WriteLine("Here is your grocery list");
                     List<Ingredient> consolidatedIngredients = GroceryList.ConsolidateIngredients(selectedRecipes);
                     GroceryList groceryList = new();
                     groceryList.Ingredients = consolidatedIngredients;
 
                     Console.WriteLine($"Grocery list for {groceryList.CreatedDate}");
+                    foreach(Ingredient ingredient in groceryList.Ingredients)
+                    {
+                        double amount = ingredient.Amount;
+                        string unit = ingredient.Unit;
+                        string name = ingredient.Name;
+                        Console.WriteLine($"{amount} {unit} {name}");
+                    }
                     Console.WriteLine(groceryList.Ingredients);
 
                     break;
