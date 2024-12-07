@@ -2,12 +2,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace meal_Planning_Console
 {
-    public class GroceryList : DbContext
+    public class GroceryList : DbContext, IQueryable
     {
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;
         public List<Ingredient> Ingredients { get; set; }
-
+        public string Name { get; set;  }
 
         public GroceryList()
         {
@@ -43,6 +43,21 @@ namespace meal_Planning_Console
                 }                
             }
             return groceryList;
+        }
+
+        public void Write()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Read()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save()
+        {
+            throw new NotImplementedException();
         }
     }
 }
