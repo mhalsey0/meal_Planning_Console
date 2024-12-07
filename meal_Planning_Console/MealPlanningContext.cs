@@ -24,5 +24,12 @@ namespace meal_Planning_Console
         {
             options.UseSqlite($"Data Source={DbPath}");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Ingredient>().ToTable("Ingredient");
+            modelBuilder.Entity<Recipe>().ToTable("Recipe");
+            modelBuilder.Entity<GroceryList>().ToTable("GroceryList");
+        }
     }
 }
